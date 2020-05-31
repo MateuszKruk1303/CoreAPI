@@ -7,5 +7,8 @@ namespace CoreAPI.Modules.Items
 {
     public class ItemDto
     {
+        public string Nazwa { get; set; }
+        public string Kolor { get; set; }
+        public int Cena { get; set; }
     }
 }

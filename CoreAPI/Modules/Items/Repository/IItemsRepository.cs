@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace CoreAPI.Modules.Items
 {
-    interface IItemsRepository
+    public interface IItemsRepository
     {
+        IEnumerable<ItemDto> GetAllItems();
     }
 }

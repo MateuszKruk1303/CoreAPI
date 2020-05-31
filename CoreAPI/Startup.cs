@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using MediatR;
+using System.Reflection;
 
 namespace CoreAPI
 {
@@ -27,7 +30,12 @@ namespace CoreAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ItemContext>(o => o.UseSqlServer(Configuration.GetConnectionString("ItemsConnection")));
+
             services.AddScoped<IItemsRepository, ItemsRepository>();
+            //services.AddScoped(typeof(IItemsRepository), typeof(ItemsRepository));
+            services.AddScoped<IRequestHandler<GetItemsListQuery, IEnumerable<ItemDto>>, GetItemsListQueryHandler>();
+            services.AddMediatR(typeof(Startup));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c =>
             {
