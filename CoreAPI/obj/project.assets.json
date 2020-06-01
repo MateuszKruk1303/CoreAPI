@@ -5,8 +5,8 @@
       "EntityFramework/6.4.4": {
         "type": "package",
         "build": {
-          "buildTransitive/EntityFramework.props": {},
-          "buildTransitive/EntityFramework.targets": {}
+          "build/EntityFramework.props": {},
+          "build/EntityFramework.targets": {}
         }
       },
       "MediatR/8.0.1": {
@@ -12551,16 +12551,10 @@
           }
         },
         "imports": [
-          "net461",
-          "net462",
-          "net47",
-          "net471",
-          "net472",
-          "net48"
+          "net461"
         ],
         "assetTargetFallback": true,
-        "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        "warn": true
       }
     }
   },

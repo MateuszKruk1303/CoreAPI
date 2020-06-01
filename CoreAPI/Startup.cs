@@ -35,6 +35,10 @@ namespace CoreAPI
             services.AddScoped<IItemsRepository, ItemsRepository>();
             //services.AddScoped(typeof(IItemsRepository), typeof(ItemsRepository));
             services.AddScoped<IRequestHandler<GetItemsListQuery, IEnumerable<ItemDto>>, GetItemsListQueryHandler>();
+            services.AddScoped<IRequestHandler<GetItemQuery, ItemDto>, GetItemQueryHandler>();
+            services.AddScoped<IRequestHandler<AddItemCommand, MediatR.Unit>, AddItemCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateItemCommand, MediatR.Unit>, UpdateItemCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteItemCommand, MediatR.Unit>, DeleteItemCommandHandler>();
             services.AddMediatR(typeof(Startup));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c =>

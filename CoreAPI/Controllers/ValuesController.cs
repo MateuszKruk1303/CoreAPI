@@ -28,28 +28,34 @@ namespace CoreAPI.Controllers
             return Ok(result);
         }
 
-        //[HttpGet]
-        //[Route("item")]
-        //public Task<ItemDto> GetItem(int itemId)
-        //{
+        [HttpGet]
+        [Route("item")]
+        public async Task<IActionResult> GetItem([FromQuery] int itemId)
+        {
+            var query = new GetItemQuery(itemId);
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
 
-        //}
+        [HttpPost]
+        [Route("add-item")]
+        public Task AddNewItem([FromBody] AddItemCommand command)
+        {
+            return _mediator.Send(command);
+        }
 
-        //[HttpPost]
-        //public void AddNewItem([FromBody] string value)
-        //{
-        //}
 
-        
-        //[HttpPut]
-        //public void UpdateItem(int id, [FromBody] string value)
-        //{
-        //}
-
-        
-        //[HttpDelete]
-        //public void DeleteItem(int id)
-        //{
-        //}
+        [HttpPut]
+        [Route("update-item")]
+        public Task UpdateItem([FromBody] UpdateItemCommand command)
+        {
+            return _mediator.Send(command);
+        }
+        [HttpDelete]
+        [Route("delete-item")]
+        public Task DeleteItem(DeleteItemCommand command)
+        {
+            return _mediator.Send(command);
+        }
     }
 }
